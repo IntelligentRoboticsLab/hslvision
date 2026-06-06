@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HSLVision: A Multimodal Vision Dataset for RoboCup Humanoid Soccer</title>
+  <meta name="description" content="HSLVision: the first public RGB-D object detection dataset and benchmark for the RoboCup Humanoid Soccer League - 6,068 images, 65,309 annotations, 7 classes, multiple venues and robot embodiments.">
+  <meta name="keywords" content="HSLVision, RoboCup, Humanoid Soccer League, Object Detection, RGB-D, Dataset, Benchmark, Monocular Depth, DepthAnythingV3, YOLO, DETR">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="HSLVision: A Multimodal Vision Dataset for RoboCup Humanoid Soccer">
+  <meta property="og:description" content="The first public RGB-D object detection dataset and benchmark for the RoboCup Humanoid Soccer League.">
+  <meta property="og:image" content="./static/images/og_preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HSLVision: A Multimodal Vision Dataset for RoboCup Humanoid Soccer">
+  <meta name="twitter:description" content="The first public RGB-D object detection dataset and benchmark for the RoboCup Humanoid Soccer League.">
+  <meta name="twitter:image" content="./static/images/og_preview.jpg">
+
+  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/hslv.css">
+</head>
+<body>
+
+<!-- ===== Title / hero ===== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">
+            HSL<span class="dnerf">Vision</span>: A Multimodal Vision Dataset for RoboCup Humanoid Soccer
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">D. M. Xavier Catarrinho<sup>1,2</sup>,</span>
+            <span class="author-block">G. de Jong<sup>1,2</sup>,</span>
+            <span class="author-block">M. J. Meijer<sup>1,2</sup>,</span>
+            <span class="author-block">H. Ruiter<sup>1,2</sup>,</span>
+            <span class="author-block">M. Honkoop<sup>1,2</sup></span>
+          </div>
+          <div class="is-size-6 publication-affil">
+            <span class="author-block"><sup>1</sup>University of Amsterdam,</span>
+            <span class="author-block"><sup>2</sup>whIRLwind Amsterdam</span>
+          </div>
+          <div class="is-size-6 publication-venue">RoboCup 2026 · Incheon, South Korea</div>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <button class="button is-dark is-rounded" disabled>
+                <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper (coming soon)</span>
+              </button>
+            </span>
+            <span class="link-block">
+              <a href="https://huggingface.co/datasets/whirlwind-ams/hslvision" class="button is-dark is-rounded">
+                <span class="icon"><img class="hf-logo" src="./static/images/hf-logo.svg" alt=""></span><span>Dataset</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Teaser gallery - RGB↔depth sliders ===== -->
+<section class="hero teaser">
+  <div class="container is-max-desktop teaser-container">
+    <div class="slider-row">
+      <div class="ba">
+        <img class="bottom" src="./static/images/teaser_cologne_rgb.jpg" alt="Annotated frame, German Open 2026 Cologne">
+        <img class="top" src="./static/images/teaser_cologne_depth.jpg" alt="Estimated depth, Cologne">
+        <span class="lbl l">RGB</span>
+        <span class="lbl r">Depth</span>
+        <div class="handle"><div class="knob"><i class="fas fa-arrows-left-right"></i></div></div>
+      </div>
+      <div class="ba">
+        <img class="bottom" src="./static/images/teaser_lab42_rgb.jpg" alt="Annotated frame, LAB42">
+        <img class="top" src="./static/images/teaser_lab42_depth.jpg" alt="Estimated depth, LAB42">
+        <span class="lbl l">RGB</span>
+        <span class="lbl r">Depth</span>
+        <div class="handle"><div class="knob"><i class="fas fa-arrows-left-right"></i></div></div>
+      </div>
+      <div class="ba">
+        <img class="bottom" src="./static/images/teaser_beijing_rgb.jpg" alt="Annotated frame, RCAP Beijing Masters 2025">
+        <img class="top" src="./static/images/teaser_beijing_depth.jpg" alt="Estimated depth, Beijing">
+        <span class="lbl l">RGB</span>
+        <span class="lbl r">Depth</span>
+        <div class="handle"><div class="knob"><i class="fas fa-arrows-left-right"></i></div></div>
+      </div>
+    </div>
+    <h2 class="subtitle has-text-centered">
+      Every RGB frame is paired with a pixel-aligned metric depth map, drag the slider to compare.
+    </h2>
+  </div>
+</section>
+
+<!-- ===== Dataset ===== -->
+<section class="section" id="dataset">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">The Dataset</h2>
+        <div class="content has-text-justified">
+          <p>
+            Images in HSLVision were collected across six locations: LAB42 (whIRLwind), German Open 2026
+            Cologne (whIRLwind), RCAP Beijing Masters 2025 (whIRLwind, HTWK), RoboCup 2025 Salvador (HTWK),
+            RoboCup 2019 Sydney (BitBots), and RoboCup 2017 Nagoya (BitBots). It spans a range of field
+            layouts, goalpost designs, ball sizes, and robot platforms - the Booster Robotics K1 and T1, as
+            well as several non-standard KidSize humanoids - recorded across the small, middle, and large
+            HSL field sizes. An additional 770 annotated images from RCAP Abu Dhabi 2025 are held out to
+            evaluate performance on unseen venues.
+          </p>
+        </div>
+
+        <div class="sample-gallery">
+          <figure><img src="./static/images/sample_lab42.jpg" alt="Annotated frame, LAB42"><figcaption>LAB42 · whIRLwind</figcaption></figure>
+          <figure><img src="./static/images/sample_cologne.jpg" alt="Annotated frame, German Open 2026 Cologne"><figcaption>German Open 2026 · Cologne</figcaption></figure>
+          <figure><img src="./static/images/sample_beijing.jpg" alt="Annotated frame, RCAP Beijing Masters 2025"><figcaption>RCAP Beijing Masters 2025</figcaption></figure>
+          <figure><img src="./static/images/sample_salvador.jpg" alt="Annotated frame, RoboCup 2025 Salvador"><figcaption>RoboCup 2025 · Salvador</figcaption></figure>
+          <figure><img src="./static/images/sample_sydney.jpg" alt="Annotated frame, RoboCup 2019 Sydney"><figcaption>RoboCup 2019 · Sydney</figcaption></figure>
+          <figure><img src="./static/images/sample_nagoya.jpg" alt="Annotated frame, RoboCup 2017 Nagoya"><figcaption>RoboCup 2017 · Nagoya</figcaption></figure>
+        </div>
+        <div class="legend" style="margin-top:0.6rem;">
+          <span><i style="background:#e8403a"></i>Ball</span>
+          <span><i style="background:#f5c518"></i>Goalpost</span>
+          <span><i style="background:#ee7b1a"></i>Robot</span>
+          <span><i style="background:#2aa5e0"></i>L-intersection</span>
+          <span><i style="background:#7d5cf0"></i>T-intersection</span>
+          <span><i style="background:#d24be0"></i>X-intersection</span>
+          <span><i style="background:#16c08a"></i>Penalty mark</span>
+        </div>
+        <p class="has-text-centered is-size-7 has-text-grey">
+          One annotated frame per recording location, with ground-truth boxes drawn in the class palette.
+        </p>
+
+        <h3 class="title is-4">Data selection</h3>
+        <div class="content has-text-justified">
+          <p>
+            Raw footage is subsampled at 3 fps and filtered to remove motion blur, occlusion, and low-quality
+            frames. To avoid near-identical, redundant images, we embed each frame with a pretrained
+            <strong>DINOv3 ViT-S/16</strong> encoder (384-dimensional pooler token, L2-normalized so cosine
+            similarity reflects distance) and iteratively remove the image with the most above-threshold
+            neighbors until no pair exceeds a similarity threshold&nbsp;τ. This yields a diverse subset without
+            depending on frame order, while a pretrained encoder avoids per-dataset training and provides a
+            semantically meaningful embedding.
+          </p>
+        </div>
+        <figure class="image">
+          <img src="./static/images/pipeline.png" alt="Data selection pipeline">
+        </figure>
+        <p class="is-size-7 has-text-grey">
+          <strong>Figure 1.</strong> Overview of the data-selection pipeline. Bottom: embedding-space
+          pruning iteratively removes points with many nearby neighbors, and the effect of varying τ on
+          the diversity of the selected subset.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Depth ===== -->
+<section class="section" id="depth">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Pixel-Aligned Depth</h2>
+        <div class="content has-text-justified">
+          <p>
+            Onboard stereo depth is not available across all recording platforms, so every color frame is
+            instead paired with a depth map estimated using <strong>DepthAnythingV3</strong>, which predicts
+            per-pixel metric depth from a single RGB image. The depth maps are aligned with the RGB images and
+            share the same pixel coordinates, so annotations apply directly to both modalities without any
+            transformation.
+          </p>
+        </div>
+
+        <figure class="image">
+          <img src="./static/images/depth_comparison.png" alt="Depth comparison">
+        </figure>
+        <p class="is-size-7 has-text-grey">
+          <strong>Figure 2.</strong> RGB input, Hobot StereoNet, and DepthAnythingV3 predictions across
+          two scenes. DepthAnythingV3 produces smoother, more spatially consistent depth with sharp,
+          well-localized object boundaries.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Release ===== -->
+<section class="section" id="release">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Release</h2>
+        <div class="content has-text-justified">
+          <p>
+            HSLVision is released under a <strong>CC BY 4.0</strong> license and available on
+            <a href="https://huggingface.co/datasets/whirlwind-ams/hslvision">Hugging Face</a>. The release
+            includes annotations, RGB images, and depth maps, divided into train / validation / test splits.
+            All code for model evaluation, dataset tooling, and depth-map generation will be released publicly
+            on GitHub upon acceptance.
+          </p>
+        </div>
+        <div class="publication-links">
+          <span class="link-block">
+            <a href="https://huggingface.co/datasets/whirlwind-ams/hslvision" class="button is-dark is-rounded">
+              <span class="icon"><img class="hf-logo" src="./static/images/hf-logo.svg" alt=""></span><span>Get the dataset</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <button class="button is-dark is-rounded" disabled>
+              <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper (coming soon)</span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Cite ===== -->
+<section class="section" id="cite">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">BibTeX</h2>
+    <div class="bib">
+      <button class="copy" id="copyBib"><i class="far fa-copy"></i> Copy</button>
+      <pre><code id="bibtex">@inproceedings{catarrinho2026hslvision,
+  author    = {Xavier Catarrinho, D. M. and de Jong, G. and Meijer, M. J. and Ruiter, H. and Honkoop, M.},
+  title     = {HSLVision: A Multimodal Vision Dataset for RoboCup Humanoid Soccer},
+  booktitle = {RoboCup 2026: Robot World Cup XXIX},
+  year      = {2026},
+  publisher = {Springer-Verlag},
+  address   = {Berlin, Heidelberg},
+  location  = {Incheon, South Korea},
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8 has-text-centered content">
+        <p>
+          Thanks to all members of team whIRLwind Amsterdam for their annotation efforts, and to team HTWK for
+          providing some of the raw recordings used in this work.
+        </p>
+        <p>
+          This website was built using the <a href="https://nerfies.github.io/">Nerfies</a> Research Page template with
+          <a href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Before/after RGB↔depth sliders (teaser trio + depth-section slider)
+  document.querySelectorAll('.ba').forEach((el) => {
+    const top = el.querySelector('.top'), handle = el.querySelector('.handle');
+    const set = (pct) => {
+      pct = Math.max(0, Math.min(100, pct));
+      top.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+      handle.style.left = pct + '%';
+    };
+    const fromEvent = (clientX) => {
+      const r = el.getBoundingClientRect();
+      set(((clientX - r.left) / r.width) * 100);
+    };
+    let drag = false;
+    el.addEventListener('mousedown', e => { drag = true; fromEvent(e.clientX); });
+    window.addEventListener('mousemove', e => { if (drag) fromEvent(e.clientX); });
+    window.addEventListener('mouseup', () => drag = false);
+    el.addEventListener('touchstart', e => fromEvent(e.touches[0].clientX), { passive: true });
+    el.addEventListener('touchmove', e => fromEvent(e.touches[0].clientX), { passive: true });
+    set(50);
+  });
+
+  // Copy BibTeX
+  const copyBtn = document.getElementById('copyBib');
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(document.getElementById('bibtex').textContent.trim()).then(() => {
+      copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
+      setTimeout(() => copyBtn.innerHTML = '<i class="far fa-copy"></i> Copy', 1800);
+    });
+  });
+</script>
+</body>
+</html>
