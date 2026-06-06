@@ -17,8 +17,6 @@ The HSLVision dataset is released under **CC BY 4.0**. See the
   title     = {HSLVision: A Multimodal Vision Dataset for RoboCup Humanoid Soccer},
   booktitle = {RoboCup 2026: Robot World Cup XXIX},
   year      = {2026},
-  publisher = {Springer-Verlag},
-  address   = {Berlin, Heidelberg},
   location  = {Incheon, South Korea},
 }
 ```
