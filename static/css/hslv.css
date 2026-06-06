@@ -1,7 +1,12 @@
 /* ===== HSLVision project page - nerfies-style, Bulma-based ===== */
 
 body {
-  font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    "Noto Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   /* the full-bleed teaser row uses 100vw; prevent a stray horizontal scrollbar */
   overflow-x: hidden;
 }
@@ -23,9 +28,24 @@ body {
   width: 240px;
   max-width: 60%;
 }
+.team-logo .irl-logo {
+  width: 90px;
+  max-width: 22%;
+}
 .team-logo .whirlwind-logo {
   width: 150px;
   max-width: 40%;
+}
+
+/* "Hungry for more?" whirlwind call-to-action logo */
+.more-logo {
+  display: inline-block;
+  margin-top: 0.6rem;
+}
+.more-logo img {
+  width: 200px;
+  max-width: 60%;
+  height: auto;
 }
 
 .publication-title {
@@ -134,7 +154,13 @@ body {
   flex-wrap: wrap;
   gap: 0.5rem 1.2rem;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
+}
+/* caption that follows the legend: a little air above, a clear gap before
+   the next heading so the section doesn't feel cramped */
+.legend + p {
+  margin-top: 0.75rem;
+  margin-bottom: 2.75rem;
 }
 .legend span {
   display: inline-flex;

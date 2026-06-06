@@ -2,6 +2,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390.92 141">
   <defs>
     <style>
+      .cls-1 {
+        fill: #231f20;
+      }
+
       .cls-2 {
         fill: #fff;
       }
@@ -11,6 +15,7 @@
       }
     </style>
   </defs>
+  <rect class="cls-1" width="390.92" height="141"/>
   <g id="text_logo_white">
     <g id="Text">
       <g id="IRL_Logo" data-name="IRL Logo">
