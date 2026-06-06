@@ -6,6 +6,28 @@ body {
   overflow-x: hidden;
 }
 
+/* institution + team logos, shown under the authors */
+.team-logo {
+  margin: 1.1rem 0 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+.team-logo img {
+  display: inline-block;
+  height: auto;
+}
+.team-logo .uva-logo {
+  width: 240px;
+  max-width: 60%;
+}
+.team-logo .whirlwind-logo {
+  width: 150px;
+  max-width: 40%;
+}
+
 .publication-title {
   font-weight: 700;
 }
